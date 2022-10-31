@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>com.tviplabs.api.playground</name>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api</url>
+	<description>Reactive Java API sample</description>
+	<inceptionYear>2022</inceptionYear>
+
+	<groupId>com.tviplabs.api.playground</groupId>
+	<artifactId>reactive-java-api</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- globals -->
+		<java.version>11</java.version>
+		<maven.version>3.6.3</maven.version>
+
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<maven.compiler.parameters>true</maven.compiler.parameters>
+		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss z</maven.build.timestamp.format>
+
+		<encoding>UTF-8</encoding>
+		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+		<project.build.resourceEncoding>${encoding}</project.build.resourceEncoding>
+		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+
+		<!-- dependencies -->
+		<slf4j.version>2.0.0-alpha5</slf4j.version>
+		<lombok.version>1.18.22</lombok.version>
+		<google-error-prone.version>2.10.0</google-error-prone.version>
+		<jackson.version>2.13.0</jackson.version>
+		<aspectj.version>1.9.8.RC3</aspectj.version>
+		<junit-jupiter.version>5.8.2</junit-jupiter.version>
+		<assertj.version>3.21.0</assertj.version>
+		<selenide.version>6.1.1</selenide.version>
+		<cucumber.version>7.1.0</cucumber.version>
+		<logback.version>1.3.0-alpha14</logback.version>
+		<logback-contrib.version>0.1.5</logback-contrib.version>
+		<logstash-logback.version>7.0.1</logstash-logback.version>
+
+		<!-- plugins -->
+		<maven-os-plugin.version>1.7.0</maven-os-plugin.version>
+		<maven-cucumber-reporting.version>5.6.2</maven-cucumber-reporting.version>
+		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
+		<maven-spotless-plugin.version>2.17.4</maven-spotless-plugin.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+		<maven-allure-plugin.version>2.10.0</maven-allure-plugin.version>
+		<maven-help-plugin.version>3.2.0</maven-help-plugin.version>
+		<maven-dependency-check.version>6.5.0</maven-dependency-check.version>
+		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+		<maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
+	</properties>
+
+	<issueManagement>
+		<url>https://github.com/AlexRogalskiy/reactive-java-api/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<distributionManagement>
+		<site>
+			<id>GitHub</id>
+			<name>GitHub</name>
+			<url>scm:git:git@github.com/AlexRogalskiy/reactive-java-api.git</url>
+		</site>
+	</distributionManagement>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>
+				https://github.com/AlexRogalskiy/reactive-java-api/blob/master/LICENSE.txt
+			</url>
+			<distribution>repo</distribution>
+			<comments>MIT license</comments>
+		</license>
+	</licenses>
+
+	<modules>
+		<module>modules/annotations</module>
+		<module>modules/extensions</module>
+		<module>modules/commons</module>
+		<module>modules/interfaces</module>
+		<module>modules/flow-impl</module>
+		<module>modules/reactor-impl</module>
+		<module>modules/bom</module>
+		<module>modules/samples</module>
+	</modules>
+
+	<profiles>
+		<!-- Integration tests profile -->
+		<profile>
+			<id>it</id>
+			<properties>
+				<surefire.commands>
+					--enable-preview
+				</surefire.commands>
+				<surefire.file>
+					-Dfile.encoding=${project.build.sourceEncoding}
+				</surefire.file>
+				<surefire.memory>
+					-Xmx1024m
+					-XX:ReservedCodeCacheSize=1G
+					-Dsun.zip.disableMemoryMapping=true
+				</surefire.memory>
+				<surefire.network>
+					-Djava.net.preferIPv4Stack=true
+					-Djdk.net.URLClassPath.disableClassPathURLCheck=true
+				</surefire.network>
+				<surefire.timezone>
+					-Duser.timezone=Europe/Moscow
+				</surefire.timezone>
+				<surefire.agent>
+					-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+				</surefire.agent>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${maven-surefire-plugin.version}</version>
+							<configuration>
+								<reuseForks>false</reuseForks>
+								<forkCount>1</forkCount>
+								<useSystemClassLoader>false</useSystemClassLoader>
+								<testFailureIgnore>false</testFailureIgnore>
+								<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
+								<argLine>
+									${surefire.agent}
+									${surefire.memory}
+									${surefire.file}
+									${surefire.network}
+									${surefire.timezone}
+									${surefire.commands}
+								</argLine>
+								<classpathDependencyExcludes>
+									<classpathDependencyExcludes>org.projectlombok:lombok</classpathDependencyExcludes>
+								</classpathDependencyExcludes>
+								<properties>
+									<property>
+										<name>listener</name>
+										<value>org.junit.platform.launcher.listeners.SummaryGeneratingListener</value>
+									</property>
+								</properties>
+								<systemProperties>
+									<property>
+										<name>allure.results.directory</name>
+										<value>${project.build.directory}/allure-results</value>
+									</property>
+									<property>
+										<name>allure.reports.directory</name>
+										<value>${project.build.directory}/allure-reports</value>
+									</property>
+								</systemProperties>
+							</configuration>
+							<dependencies>
+								<dependency>
+									<groupId>org.aspectj</groupId>
+									<artifactId>aspectjweaver</artifactId>
+									<version>${aspectj.version}</version>
+								</dependency>
+								<dependency>
+									<groupId>org.apache.maven.surefire</groupId>
+									<artifactId>maven-surefire-common</artifactId>
+									<version>${maven-surefire-plugin.version}</version>
+								</dependency>
+							</dependencies>
+						</plugin>
+
+						<plugin>
+							<groupId>io.qameta.allure</groupId>
+							<artifactId>allure-maven</artifactId>
+							<version>${maven-allure-plugin.version}</version>
+							<configuration>
+								<outputDirectory>${project.build.directory}</outputDirectory>
+								<reportingOutputDirectory>${project.build.directory}</reportingOutputDirectory>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+
+				<!-- Use in lifecycle -->
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>io.qameta.allure</groupId>
+						<artifactId>allure-maven</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Reporting profile -->
+		<profile>
+			<id>reporting</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>net.masterthought</groupId>
+							<artifactId>maven-cucumber-reporting</artifactId>
+							<version>${maven-cucumber-reporting.version}</version>
+							<executions>
+								<execution>
+									<id>execution</id>
+									<phase>verify</phase>
+									<goals>
+										<goal>generate</goal>
+									</goals>
+									<configuration>
+										<projectName>${project.name}</projectName>
+										<!-- output directory for the generated report -->
+										<outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
+										<!-- optional, defaults to outputDirectory if not specified -->
+										<inputDirectory>${project.build.directory}/cucumber</inputDirectory>
+										<jsonFiles>
+											<!-- supports wildcard or name pattern -->
+											<param>**/*.json</param>
+										</jsonFiles>
+										<!-- optional, defaults to outputDirectory if not specified -->
+										<classificationDirectory>${project.build.directory}/classifications</classificationDirectory>
+										<!--shows additional column in report - 'Device'-->
+										<!--                            <parallelTesting>true</parallelTesting>-->
+										<!-- optional, set true to fail build on test failures -->
+										<checkBuildResult>false</checkBuildResult>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<!-- Security check profile -->
+		<profile>
+			<id>security-check</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.owasp</groupId>
+							<artifactId>dependency-check-maven</artifactId>
+							<version>${maven-dependency-check.version}</version>
+							<executions>
+								<execution>
+									<goals>
+										<goal>check</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<!-- Code style check profile -->
+		<profile>
+			<id>codestyle-check</id>
+			<properties>
+				<java-format.version>1.8</java-format.version>
+				<java-format.style>AOSP</java-format.style>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>com.diffplug.spotless</groupId>
+							<artifactId>spotless-maven-plugin</artifactId>
+							<version>${maven-spotless-plugin.version}</version>
+							<configuration>
+								<java>
+									<googleJavaFormat>
+										<version>${java-format.version}</version>
+										<style>${java-format.style}</style>
+									</googleJavaFormat>
+									<licenseHeader>
+										<delimiter>package</delimiter>
+										<file>${session.executionRootDirectory}/license/license-header.txt</file>
+									</licenseHeader>
+								</java>
+							</configuration>
+							<executions>
+								<execution>
+									<id>spotless-check</id>
+									<phase>process-test-classes</phase>
+									<goals>
+										<goal>check</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-checkstyle-plugin</artifactId>
+							<version>${maven-checkstyle-plugin.version}</version>
+							<configuration>
+								<configLocation>${session.executionRootDirectory}/checkstyle/checkstyle.xml</configLocation>
+								<encoding>UTF-8</encoding>
+								<consoleOutput>true</consoleOutput>
+								<failsOnError>true</failsOnError>
+								<linkXRef>false</linkXRef>
+							</configuration>
+							<executions>
+								<execution>
+									<id>validate</id>
+									<phase>validate</phase>
+									<goals>
+										<goal>check</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<!-- Javadoc profile -->
+		<profile>
+			<id>javadoc</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>${maven-javadoc-plugin.version}</version>
+							<configuration>
+								<release>${java.version}</release>
+								<header>${project.name}, ${project.version}</header>
+								<footer>${project.description}, ${project.version}</footer>
+								<encoding>${project.build.sourceEncoding}</encoding>
+								<charset>${project.build.resourceEncoding}</charset>
+								<windowtitle>${project.name} v${project.version} API Documentation</windowtitle>
+								<doctitle>${project.name} v${project.version} API Documentation</doctitle>
+								<reportOutputDirectory>${project.build.directory}/apidocs</reportOutputDirectory>
+								<outputDirectory>${project.build.directory}/apidocs</outputDirectory>
+								<additionalJOptions>
+									<additionalJOption>-Xdoclint:all</additionalJOption>
+									<additionalJOption>-Xdoclint:-missing</additionalJOption>
+									<additionalJOption>--allow-script-in-comments</additionalJOption>
+								</additionalJOptions>
+							</configuration>
+							<executions>
+								<execution>
+									<id>attach-javadoc</id>
+									<goals>
+										<goal>jar</goal>
+									</goals>
+									<phase>prepare-package</phase>
+									<configuration>
+										<includeDependencySources>true</includeDependencySources>
+										<dependencySourceIncludes>
+											<dependencySourceInclude>${project.groupId}:*</dependencySourceInclude>
+										</dependencySourceIncludes>
+										<quiet>true</quiet>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+
+				<!-- Use in lifecycle -->
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Development profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<maven.repackage.skip>false</maven.repackage.skip>
+				<maven.devtools.exclude>false</maven.devtools.exclude>
+				<maven.compiler.debug>true</maven.compiler.debug>
+				<maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
+				<maven.compiler.verbose>true</maven.compiler.verbose>
+				<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>${jackson.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>io.cucumber</groupId>
+				<artifactId>cucumber-bom</artifactId>
+				<version>${cucumber.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<!--			<dependency>-->
+			<!--				<groupId>com.tviplabs.api.playground</groupId>-->
+			<!--				<artifactId>reactive-java-api-bom</artifactId>-->
+			<!--				<version>${project.version}</version>-->
+			<!--				<scope>import</scope>-->
+			<!--				<type>pom</type>-->
+			<!--			</dependency>-->
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Logback dependencies -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback.contrib</groupId>
+			<artifactId>logback-json-classic</artifactId>
+			<version>${logback-contrib.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback.contrib</groupId>
+			<artifactId>logback-jackson</artifactId>
+			<version>${logback-contrib.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Google dependencies -->
+		<dependency>
+			<groupId>com.google.errorprone</groupId>
+			<artifactId>error_prone_annotations</artifactId>
+			<version>${google-error-prone.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Lombok dependencies -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<directory>${maven.multiModuleProjectDirectory}/.build/bin/${project.name}</directory>
+
+		<extensions>
+			<extension>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>${maven-os-plugin.version}</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+					<version>${maven-help-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven-enforcer-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven-jar-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<annotationProcessorPaths>
+						<annotationProcessorPath>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</annotationProcessorPath>
+						<annotationProcessorPath>
+							<groupId>com.google.errorprone</groupId>
+							<artifactId>error_prone_core</artifactId>
+							<version>${google-error-prone.version}</version>
+						</annotationProcessorPath>
+					</annotationProcessorPaths>
+					<optimize>false</optimize>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+
+					<compilerArgs>
+						<arg>-XDcompilePolicy=byfile</arg>
+						<arg>-Xplugin:ErrorProne -XepDisableWarningsInGeneratedCode -Xep:NestedInstanceOfConditions:OFF
+							-Xep:ParameterName:OFF -Xep:SameNameButDifferent:OFF -Xep:FunctionalInterfaceMethodChanged:OFF
+						</arg>
+					</compilerArgs>
+
+					<compilerVersion>${java.version}</compilerVersion>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>${encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-help-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>show-profiles</id>
+						<goals>
+							<goal>active-profiles</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[${maven.version},)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+					<execution>
+						<id>enforce-java</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<version>[${java.version},)</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<forceCreation>true</forceCreation>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+						<compress>true</compress>
+						<manifest>
+							<packageName>${project.groupId}</packageName>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<classpathLayoutType>custom</classpathLayoutType>
+							<customClasspathLayout>${project.artifactId}.${project.version}</customClasspathLayout>
+						</manifest>
+						<manifestEntries>
+							<Contains-Sources>java,class</Contains-Sources>
+							<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+							<Implementation-Title>${project.description}</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-Build>${project.build.finalName}</Implementation-Build>
+							<Specification-Title>${project.description}</Specification-Title>
+							<Specification-Version>${project.version}</Specification-Version>
+							<Specification-Vendor>${project.organization.name} - ${project.organization.url}
+							</Specification-Vendor>
+							<Bundle-License>${project.organization.name}</Bundle-License>
+							<X-Builder>Maven ${maven.version}</X-Builder>
+							<X-Build-Time>${maven.build.timestamp}</X-Build-Time>
+							<X-Build-Os>${os.name}</X-Build-Os>
+						</manifestEntries>
+					</archive>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>javadoc-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<skipIfEmpty>true</skipIfEmpty>
+							<classifier>javadoc</classifier>
+							<classesDirectory>${project.basedir}/javadoc</classesDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>sources-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<skipIfEmpty>true</skipIfEmpty>
+							<classifier>sources</classifier>
+							<classesDirectory>${project.build.sourceDirectory}</classesDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+						<configuration>
+							<skipIfEmpty>true</skipIfEmpty>
+							<classifier>test</classifier>
+							<testClassesDirectory>${project.build.testSourceDirectory}</testClassesDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

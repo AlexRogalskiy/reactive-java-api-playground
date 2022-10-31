@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>com.tviplabs.api.playground</name>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/bom</url>
+	<description>Reactive Java API BOM (Bill of Materials)</description>
+	<inceptionYear>2022</inceptionYear>
+
+	<groupId>com.tviplabs.api.playground</groupId>
+	<artifactId>reactive-java-api-bom</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- globals -->
+		<spotless.check.skip>true</spotless.check.skip>
+
+		<!-- dependencies -->
+		<reactive-java-api.version>1.0.0</reactive-java-api.version>
+
+		<!-- plugins -->
+		<maven-spotless-plugin.version>2.17.4</maven-spotless-plugin.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Reactive Java API BOM dependencies -->
+			<dependency>
+				<groupId>com.tviplabs.api.playground</groupId>
+				<artifactId>reactive-java-api-annotations</artifactId>
+				<version>${reactive-java-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tviplabs.api.playground</groupId>
+				<artifactId>reactive-java-api-commons</artifactId>
+				<version>${reactive-java-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tviplabs.api.playground</groupId>
+				<artifactId>reactive-java-api-extensions</artifactId>
+				<version>${reactive-java-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tviplabs.api.playground</groupId>
+				<artifactId>reactive-java-api-interfaces</artifactId>
+				<version>${reactive-java-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tviplabs.api.playground</groupId>
+				<artifactId>reactive-java-api-flow-impl</artifactId>
+				<version>${reactive-java-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tviplabs.api.playground</groupId>
+				<artifactId>reactive-java-api-reactor-impl</artifactId>
+				<version>${reactive-java-api.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<defaultGoal>clean package</defaultGoal>
+		<finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.diffplug.spotless</groupId>
+					<artifactId>spotless-maven-plugin</artifactId>
+					<version>${maven-spotless-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

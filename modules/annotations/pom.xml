@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.tviplabs.api.playground</groupId>
+		<artifactId>reactive-java-api</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<name>com.tviplabs.api.playground.annotations</name>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/annotations</url>
+	<description>Reactive Java API annotations</description>
+	<inceptionYear>2022</inceptionYear>
+	<artifactId>reactive-java-api-annotations</artifactId>
+	<packaging>jar</packaging>
+
+	<build>
+		<defaultGoal>clean package</defaultGoal>
+		<finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+		<testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+		<testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+	</build>
+</project>
