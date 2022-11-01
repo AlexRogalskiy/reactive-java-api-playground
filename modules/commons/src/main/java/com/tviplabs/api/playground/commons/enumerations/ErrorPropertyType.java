@@ -45,6 +45,9 @@ public enum ErrorPropertyType implements PropertyTemplate {
   /** Unsupported messages basename */
   CONFIGURATION_MESSAGES_BASENAME_ERROR(
       "configuration.messages.basename.invalid", "Message basename error"),
+  /** Unsupported service name */
+  SERVICE_RESOLUTION_ERROR(
+      "configuration.services.naming.invalid", "Service name resolution error"),
   /** Unsupported templates basedir */
   CONFIGURATION_TEMPLATES_DIR_ERROR(
       "configuration.templates.basedir.invalid", "Template base directory error"),

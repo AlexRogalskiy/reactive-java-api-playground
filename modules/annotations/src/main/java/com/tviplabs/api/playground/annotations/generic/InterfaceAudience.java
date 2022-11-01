@@ -1,4 +1,4 @@
-package com.tviplabs.api.playground.annotations.management;
+package com.tviplabs.api.playground.annotations.generic;
 
 import java.lang.annotation.*;
 

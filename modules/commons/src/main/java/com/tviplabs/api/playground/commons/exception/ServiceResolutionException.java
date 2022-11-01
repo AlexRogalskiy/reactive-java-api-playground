@@ -24,53 +24,45 @@ import com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType;
 import com.tviplabs.api.playground.commons.interfaces.PropertyTemplate;
 import lombok.NonNull;
 
-/** Data parse {@link LocalizableException} implementation */
-public class DataParseException extends LocalizableException {
+import java.util.function.Supplier;
+
+/** Configuration {@link LocalizableException} implementation */
+public class ServiceResolutionException extends LocalizableException {
   /** Default explicit serialVersionUID for interoperability */
-  private static final long serialVersionUID = -8863630294671317139L;
+  private static final long serialVersionUID = -2297995868660672241L;
 
   /**
-   * {@link DataParseException} constructor with initial input message
+   * {@link ServiceResolutionException} constructor with initial input message
    *
    * @param template initial input {@link PropertyTemplate} message
    * @param args initial input message {@link Object} collection of message arguments
    */
-  public DataParseException(final PropertyTemplate template, final Object... args) {
+  public ServiceResolutionException(final PropertyTemplate template, final Object... args) {
     super(template, args);
   }
 
   /**
-   * Returns {@link DataParseException} by input parameters
+   * Returns {@link ServiceResolutionException} by input parameters
    *
    * @param template initial input {@link PropertyTemplate} message
    * @param args initial input message {@link Object} collection of message arguments
-   * @return {@link DataParseException}
+   * @return {@link ServiceResolutionException}
    */
   @NonNull
-  public static DataParseException createError(
+  public static Supplier<ServiceResolutionException> createError(
       final PropertyTemplate template, final Object... args) {
-    return new DataParseException(template, args);
+    return () -> new ServiceResolutionException(template, args);
   }
 
   /**
-   * Returns json {@link DataParseException} by input parameters
+   * Returns {@link ServiceResolutionException} by input parameters
    *
    * @param args initial input message arguments {@link Object}
-   * @return json {@link DataParseException}
+   * @return port {@link ServiceResolutionException}
    */
   @NonNull
-  public static DataParseException createJsonParseError(final Object... args) {
-    return createError(ErrorPropertyType.DATA_JSON_PARSE_ERROR, args);
-  }
-
-  /**
-   * Returns yaml {@link DataParseException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return yaml {@link DataParseException}
-   */
-  @NonNull
-  public static DataParseException createYamlParseError(final Object... args) {
-    return createError(ErrorPropertyType.DATA_YAML_PARSE_ERROR, args);
+  public static Supplier<ServiceResolutionException> createServiceResolutionError(
+      final Object... args) {
+    return createError(ErrorPropertyType.SERVICE_RESOLUTION_ERROR, args);
   }
 }

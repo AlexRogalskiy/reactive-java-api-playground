@@ -3,5 +3,5 @@
 @InterfaceStability.Evolving
 package com.tviplabs.api.playground.interfaces;
 
-import com.tviplabs.api.playground.annotations.management.InterfaceAudience;
-import com.tviplabs.api.playground.annotations.management.InterfaceStability;
+import com.tviplabs.api.playground.annotations.generic.InterfaceAudience;
+import com.tviplabs.api.playground.annotations.generic.InterfaceStability;
