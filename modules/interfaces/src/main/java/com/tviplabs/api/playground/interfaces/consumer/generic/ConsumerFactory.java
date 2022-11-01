@@ -6,15 +6,16 @@ import java.util.Properties;
  * General consumer factory interface declaration.
  *
  * @author Alexander Rogalskiy
- * @param <E> type of consumer service.
+ * @param <T> type of data to consume.
+ * @param <C> type of consumer service.
  */
 @FunctionalInterface
-public interface ConsumerFactory<E> {
+public interface ConsumerFactory<T, C extends Consumer<T>> {
   /**
-   * Returns new {@link E} consumer service by input configuration {@link Properties}
+   * Returns new {@link C} consumer service by input configuration {@link Properties}
    *
    * @param base initial input configuration {@link Properties} to operate by.
    * @return new consumer service
    */
-  E create(final Properties base);
+  C create(final Properties base);
 }

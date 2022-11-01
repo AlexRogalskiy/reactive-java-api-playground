@@ -8,4 +8,4 @@ import com.tviplabs.api.playground.interfaces.consumer.generic.ConsumerFactory;
  * @author Alexander Rogalskiy
  * @param <E> type of event to consume.
  */
-public interface EventConsumerFactory<E> extends ConsumerFactory<EventConsumer<E>> {}
+public interface EventConsumerFactory<E> extends ConsumerFactory<E, EventConsumer<E>> {}

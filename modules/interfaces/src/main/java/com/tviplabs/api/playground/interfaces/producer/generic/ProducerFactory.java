@@ -6,15 +6,16 @@ import java.util.Properties;
  * General producer factory interface declaration.
  *
  * @author Alexander Rogalskiy
- * @param <E> type of producer service.
+ * @param <T> type of data to consume.
+ * @param <P> type of producer service.
  */
 @FunctionalInterface
-public interface ProducerFactory<E> {
+public interface ProducerFactory<T, P extends Producer<T>> {
   /**
-   * Returns new {@link E} producer service by input configuration {@link Properties}
+   * Returns new {@link P} producer service by input configuration {@link Properties}
    *
    * @param base initial input configuration {@link Properties} to operate by.
    * @return new producer service
    */
-  E create(final Properties base);
+  P create(final Properties base);
 }

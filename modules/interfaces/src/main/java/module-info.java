@@ -1,6 +1,4 @@
-import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumerFactory;
-import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducerFactory;
 
 /**
@@ -18,8 +16,6 @@ module reactive.java.api.interfaces {
   exports com.tviplabs.api.playground.interfaces.consumer.event;
   exports com.tviplabs.api.playground.interfaces.producer.event;
 
-  uses EventProducer;
   uses EventProducerFactory;
-  uses EventConsumer;
   uses EventConsumerFactory;
 }

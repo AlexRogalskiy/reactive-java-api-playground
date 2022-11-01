@@ -8,4 +8,4 @@ import com.tviplabs.api.playground.interfaces.producer.generic.ProducerFactory;
  * @author Alexander Rogalskiy
  * @param <E> type of event to produce.
  */
-public interface EventProducerFactory<E> extends ProducerFactory<EventProducer<E>> {}
+public interface EventProducerFactory<E> extends ProducerFactory<E, EventProducer<E>> {}
