@@ -1,4 +1,4 @@
-package com.tviplabs.api.playground.interfaces.generic;
+package com.tviplabs.api.playground.interfaces.common;
 
 import java.util.List;
 import java.util.ServiceLoader;

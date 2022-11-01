@@ -1,4 +1,4 @@
-/** Reactive Java API flow module intended to use with Reactor API. */
+/** Reactive Java API reactor module intended to use with Reactor API. */
 @InterfaceAudience.PublicApi
 @InterfaceStability.Evolving
 package com.tviplabs.api.playground.reactor;
