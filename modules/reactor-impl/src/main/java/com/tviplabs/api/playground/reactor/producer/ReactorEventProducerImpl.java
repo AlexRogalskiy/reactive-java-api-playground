@@ -1,13 +1,12 @@
 package com.tviplabs.api.playground.reactor.producer;
 
+import com.tviplabs.api.playground.commons.configuration.ProducerConfig;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
-
-import java.util.Map;
 
 /**
  * Reactor event producer implementation based on Reactor API.
@@ -23,11 +22,10 @@ public class ReactorEventProducerImpl<E> implements EventProducer<E> {
   private static final Marker DEFAULT_LOGGING_MARKER =
       MarkerFactory.getMarker("ReactorEventProducerImpl");
 
-  @NonNull private final Map<String, Object> configMap;
+  public ReactorEventProducerImpl(@NonNull final ProducerConfig config) {}
 
   @Override
   public void publish(final E event) {
-    log.info(DEFAULT_LOGGING_MARKER, ">>> Producing event: {}", event);
-    final var t = this.configMap;
+    log.info(DEFAULT_LOGGING_MARKER, ">>> producing event: {}", event);
   }
 }

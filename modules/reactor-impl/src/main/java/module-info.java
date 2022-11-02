@@ -11,6 +11,7 @@ import com.tviplabs.api.playground.reactor.producer.ReactorEventProducerFactoryI
 module reactive.java.api.reactor.impl {
   requires reactive.java.api.interfaces;
   requires reactive.java.api.annotations;
+  requires reactive.java.api.commons;
   requires lombok;
   requires java.desktop;
   requires static org.slf4j;

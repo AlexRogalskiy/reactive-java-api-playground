@@ -111,7 +111,7 @@
 				<configuration>
 					<annotationProcessorPaths combine.children="append">
 						<annotationProcessorPath>
-							<groupId>org.twiplabs.api.playground</groupId>
+							<groupId>com.tviplabs.api.playground</groupId>
 							<artifactId>reactive-java-api-extensions</artifactId>
 							<version>${project.version}</version>
 						</annotationProcessorPath>

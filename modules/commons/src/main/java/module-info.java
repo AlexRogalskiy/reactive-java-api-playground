@@ -6,6 +6,7 @@
 module reactive.java.api.commons {
   exports com.tviplabs.api.playground.commons.exception;
   exports com.tviplabs.api.playground.commons.interfaces;
+  exports com.tviplabs.api.playground.commons.configuration;
 
   requires reactive.java.api.annotations;
   requires reactive.java.api.extensions;

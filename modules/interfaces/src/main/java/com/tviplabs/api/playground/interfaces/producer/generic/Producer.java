@@ -1,5 +1,7 @@
 package com.tviplabs.api.playground.interfaces.producer.generic;
 
+import com.tviplabs.api.playground.interfaces.common.Nameable;
+
 /**
  * Generic producer interface declaration.
  *
@@ -7,7 +9,7 @@ package com.tviplabs.api.playground.interfaces.producer.generic;
  * @param <T> type of data to produce.
  */
 @FunctionalInterface
-public interface Producer<T> {
+public interface Producer<T> extends Nameable {
   /**
    * Publishes particular {@link T} data type.
    *
@@ -20,6 +22,7 @@ public interface Producer<T> {
    *
    * @return current producer name.
    */
+  @Override
   default String getName() {
     return this.getClass().getCanonicalName();
   }

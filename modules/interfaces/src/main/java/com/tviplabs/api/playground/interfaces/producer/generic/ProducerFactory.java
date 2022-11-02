@@ -1,5 +1,7 @@
 package com.tviplabs.api.playground.interfaces.producer.generic;
 
+import com.tviplabs.api.playground.interfaces.common.Nameable;
+
 import java.util.Properties;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Properties;
  * @param <P> type of producer service.
  */
 @FunctionalInterface
-public interface ProducerFactory<T, P extends Producer<T>> {
+public interface ProducerFactory<T, P extends Producer<T>> extends Nameable {
   /**
    * Returns new {@link P} producer service by input configuration {@link Properties}
    *
@@ -18,4 +20,14 @@ public interface ProducerFactory<T, P extends Producer<T>> {
    * @return new producer service
    */
   P create(final Properties base);
+
+  /**
+   * Returns {@link String} current {@link ProducerFactory} name.
+   *
+   * @return current producer factory name.
+   */
+  @Override
+  default String getName() {
+    return this.getClass().getCanonicalName();
+  }
 }

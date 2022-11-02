@@ -17,4 +17,14 @@ public interface EventProducer<E> extends Producer<E> {
    */
   @Override
   void publish(final E event);
+
+  /**
+   * Returns {@link String} current {@link EventProducer} name.
+   *
+   * @return current event consumer name.
+   */
+  @Override
+  default String getName() {
+    return this.getClass().getSimpleName();
+  }
 }

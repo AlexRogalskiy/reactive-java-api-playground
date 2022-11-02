@@ -30,6 +30,13 @@
 			<version>${commons-lang3.version}</version>
 		</dependency>
 
+		<!-- Slf4j dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
 		<!-- Self dependencies -->
 		<dependency>
 			<groupId>com.tviplabs.api.playground</groupId>

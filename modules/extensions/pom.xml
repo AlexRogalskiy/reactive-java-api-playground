@@ -10,7 +10,7 @@
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
-	<name>com.tviplabs.api.playground.flow</name>
+	<name>com.tviplabs.api.playground.extensions</name>
 	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/extensions</url>
 	<description>Reactive Java API extensions</description>
 	<inceptionYear>2022</inceptionYear>

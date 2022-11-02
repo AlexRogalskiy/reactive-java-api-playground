@@ -1,5 +1,6 @@
 package com.tviplabs.api.playground.flow.consumer;
 
+import com.tviplabs.api.playground.commons.configuration.ConsumerConfig;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumerFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,10 @@ public class FlowEventConsumerFactoryImpl<E> implements EventConsumerFactory<E> 
 
   @Override
   public EventConsumer<E> create(final Properties base) {
-    log.info(DEFAULT_LOGGING_MARKER, ">>> Consumer factory properties: {}", base);
-    return null;
+    log.info(DEFAULT_LOGGING_MARKER, ">>> consumer factory properties: {}", base);
+
+    final ConsumerConfig config = ConsumerConfig.builder().config(null, null).build();
+
+    return new FlowEventConsumerImpl<>(config);
   }
 }

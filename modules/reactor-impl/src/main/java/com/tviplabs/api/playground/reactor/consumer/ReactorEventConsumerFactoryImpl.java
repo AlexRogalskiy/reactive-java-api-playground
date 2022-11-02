@@ -1,8 +1,8 @@
 package com.tviplabs.api.playground.reactor.consumer;
 
+import com.tviplabs.api.playground.commons.configuration.ConsumerConfig;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumerFactory;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Marker;
@@ -24,21 +24,12 @@ public class ReactorEventConsumerFactoryImpl<E> implements EventConsumerFactory<
   private static final Marker DEFAULT_LOGGING_MARKER =
       MarkerFactory.getMarker("ReactorEventConsumerFactoryImpl");
 
-  @NonNull private final ReactorEventConsumerBuilder<E> eventConsumerBuilder;
-
-  public ReactorEventConsumerFactoryImpl() {
-    this(new ReactorEventConsumerBuilder<>());
-  }
-
-  @NonNull
-  public static <E> EventConsumerFactory<E> provider() {
-    return new ReactorEventConsumerFactoryImpl<>();
-  }
-
   @Override
   public EventConsumer<E> create(final Properties base) {
-    log.info(DEFAULT_LOGGING_MARKER, ">>> Consumer factory properties: {}", base);
-    final var t = this.eventConsumerBuilder;
-    return null;
+    log.info(DEFAULT_LOGGING_MARKER, ">>> consumer factory properties: {}", base);
+
+    final ConsumerConfig config = ConsumerConfig.builder().config(null, null).build();
+
+    return new ReactorEventConsumerImpl<>(config);
   }
 }

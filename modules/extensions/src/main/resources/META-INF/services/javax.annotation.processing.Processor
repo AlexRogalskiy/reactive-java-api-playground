@@ -1,1 +1,1 @@
-com.tviplabs.api.playground.flow.processors.ResourceBundleAnnotationsProcessor
+com.tviplabs.api.playground.extensions.processors.ResourceBundleAnnotationsProcessor

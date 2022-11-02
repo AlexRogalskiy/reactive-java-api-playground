@@ -17,4 +17,14 @@ public interface EventConsumer<E> extends Consumer<E> {
    */
   @Override
   void subscribe(final E event);
+
+  /**
+   * Returns {@link String} current {@link EventConsumer} name.
+   *
+   * @return current event consumer name.
+   */
+  @Override
+  default String getName() {
+    return this.getClass().getSimpleName();
+  }
 }
