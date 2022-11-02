@@ -28,6 +28,6 @@ public interface ProducerFactory<T, P extends Producer<T>> extends Nameable {
    */
   @Override
   default String getName() {
-    return this.getClass().getCanonicalName();
+    return this.getClass().getSimpleName();
   }
 }

@@ -465,6 +465,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Slf4j dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
 		<!-- Google dependencies -->
 		<dependency>
 			<groupId>com.google.errorprone</groupId>

@@ -35,6 +35,7 @@ public class ApplicationRunner {
     try {
       final EventProducerFactory<E> producerFactory =
           ServiceProvider.getInstance(EventProducerFactory.class, serviceName);
+
       return producerFactory.create(properties);
     } catch (Exception e) {
       log.error(
@@ -49,6 +50,7 @@ public class ApplicationRunner {
     try {
       final EventConsumerFactory<E> consumerFactory =
           ServiceProvider.getInstance(EventConsumerFactory.class, serviceName);
+
       return consumerFactory.create(properties);
     } catch (Exception e) {
       log.error(

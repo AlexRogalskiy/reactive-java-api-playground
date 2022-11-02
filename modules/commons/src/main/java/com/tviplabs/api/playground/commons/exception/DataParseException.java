@@ -20,9 +20,11 @@
  */
 package com.tviplabs.api.playground.commons.exception;
 
-import com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType;
 import com.tviplabs.api.playground.commons.interfaces.PropertyTemplate;
 import lombok.NonNull;
+
+import static com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType.DATA_JSON_PARSE_ERROR;
+import static com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType.DATA_YAML_PARSE_ERROR;
 
 /** Data parse {@link LocalizableException} implementation */
 public class DataParseException extends LocalizableException {
@@ -60,7 +62,7 @@ public class DataParseException extends LocalizableException {
    */
   @NonNull
   public static DataParseException createJsonParseError(final Object... args) {
-    return createError(ErrorPropertyType.DATA_JSON_PARSE_ERROR, args);
+    return createError(DATA_JSON_PARSE_ERROR, args);
   }
 
   /**
@@ -71,6 +73,6 @@ public class DataParseException extends LocalizableException {
    */
   @NonNull
   public static DataParseException createYamlParseError(final Object... args) {
-    return createError(ErrorPropertyType.DATA_YAML_PARSE_ERROR, args);
+    return createError(DATA_YAML_PARSE_ERROR, args);
   }
 }

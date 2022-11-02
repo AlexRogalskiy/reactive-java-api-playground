@@ -25,32 +25,16 @@ import com.tviplabs.api.playground.extensions.annotations.GenerateResourceBundle
 import lombok.Getter;
 import lombok.ToString;
 
-import static com.tviplabs.api.playground.commons.enumerations.NamespaceType.ERROR;
-
 /** Supported error property type. */
 @ToString
 @GenerateResourceBundle
 public enum ErrorPropertyType implements PropertyTemplate {
-  /** Unsupported configuration scheme */
-  CONFIGURATION_SCHEME_ERROR("configuration.app.scheme.invalid", "Application scheme error"),
-  /** Unsupported configuration host */
-  CONFIGURATION_HOST_ERROR("configuration.app.host.invalid", "Application host error"),
-  /** Unsupported configuration port */
-  CONFIGURATION_PORT_ERROR("configuration.app.port.invalid", "Application port error"),
-  /** Unsupported environment variable */
-  CONFIGURATION_ENV_VAR_ERROR(
-      "configuration.app.env.var.invalid", "Application environment variable error"),
-  /** Unsupported configuration path */
-  CONFIGURATION_PATH_ERROR("configuration.app.path.invalid", "Application path error"),
   /** Unsupported messages basename */
   CONFIGURATION_MESSAGES_BASENAME_ERROR(
       "configuration.messages.basename.invalid", "Message basename error"),
   /** Unsupported service name */
-  SERVICE_RESOLUTION_ERROR(
-      "configuration.services.naming.invalid", "Service name resolution error"),
-  /** Unsupported templates basedir */
-  CONFIGURATION_TEMPLATES_DIR_ERROR(
-      "configuration.templates.basedir.invalid", "Template base directory error"),
+  SERVICE_DISCOVERY_RESOLUTION_ERROR(
+      "service.discovery.resolution.invalid", "Service name resolution error"),
   /** Invalid json parse exception */
   DATA_JSON_PARSE_ERROR("data.json.parse.invalid", "Json parsing format error"),
   /** Invalid yaml parse exception */
@@ -70,7 +54,7 @@ public enum ErrorPropertyType implements PropertyTemplate {
    * @param description initial input {@link String} description to operate by
    */
   ErrorPropertyType(final String key, final String description) {
-    this.key = ERROR.apply(key);
+    this.key = NamespaceType.ERROR.apply(key);
     this.description = description;
   }
 }

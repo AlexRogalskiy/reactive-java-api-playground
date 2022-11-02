@@ -20,11 +20,12 @@
  */
 package com.tviplabs.api.playground.commons.exception;
 
-import com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType;
 import com.tviplabs.api.playground.commons.interfaces.PropertyTemplate;
 import lombok.NonNull;
 
 import java.util.function.Supplier;
+
+import static com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType.CONFIGURATION_MESSAGES_BASENAME_ERROR;
 
 /** Configuration {@link LocalizableException} implementation */
 public class ConfigurationException extends LocalizableException {
@@ -55,72 +56,6 @@ public class ConfigurationException extends LocalizableException {
   }
 
   /**
-   * Returns scheme {@link ConfigurationException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return host {@link ConfigurationException}
-   */
-  @NonNull
-  public static Supplier<ConfigurationException> createSchemeError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_SCHEME_ERROR, args);
-  }
-
-  /**
-   * Returns host {@link ConfigurationException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return host {@link ConfigurationException}
-   */
-  @NonNull
-  public static Supplier<ConfigurationException> createHostError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_HOST_ERROR, args);
-  }
-
-  /**
-   * Returns host {@link ConfigurationException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return host {@link ConfigurationException}
-   */
-  @NonNull
-  public static Supplier<ConfigurationException> createEnvVarError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_ENV_VAR_ERROR, args);
-  }
-
-  /**
-   * Returns port {@link ConfigurationException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return port {@link ConfigurationException}
-   */
-  @NonNull
-  public static Supplier<ConfigurationException> createPortError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_PORT_ERROR, args);
-  }
-
-  /**
-   * Returns path {@link ConfigurationException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return path {@link ConfigurationException}
-   */
-  @NonNull
-  public static Supplier<ConfigurationException> createPathError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_PATH_ERROR, args);
-  }
-
-  /**
-   * Returns templates {@link ConfigurationException} by input parameters
-   *
-   * @param args initial input message arguments {@link Object}
-   * @return path {@link ConfigurationException}
-   */
-  @NonNull
-  public static Supplier<ConfigurationException> createTemplatesError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_TEMPLATES_DIR_ERROR, args);
-  }
-
-  /**
    * Returns messages basename {@link ConfigurationException} by input parameters
    *
    * @param args initial input message arguments {@link Object}
@@ -128,6 +63,6 @@ public class ConfigurationException extends LocalizableException {
    */
   @NonNull
   public static Supplier<ConfigurationException> createMessagesBasenameError(final Object... args) {
-    return createError(ErrorPropertyType.CONFIGURATION_MESSAGES_BASENAME_ERROR, args);
+    return createError(CONFIGURATION_MESSAGES_BASENAME_ERROR, args);
   }
 }

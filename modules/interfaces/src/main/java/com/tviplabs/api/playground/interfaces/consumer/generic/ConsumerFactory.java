@@ -28,6 +28,6 @@ public interface ConsumerFactory<T, C extends Consumer<T>> extends Nameable {
    */
   @Override
   default String getName() {
-    return this.getClass().getCanonicalName();
+    return this.getClass().getSimpleName();
   }
 }

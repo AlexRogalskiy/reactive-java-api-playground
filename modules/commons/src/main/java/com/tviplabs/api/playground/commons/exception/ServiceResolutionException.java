@@ -20,11 +20,12 @@
  */
 package com.tviplabs.api.playground.commons.exception;
 
-import com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType;
 import com.tviplabs.api.playground.commons.interfaces.PropertyTemplate;
 import lombok.NonNull;
 
 import java.util.function.Supplier;
+
+import static com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType.SERVICE_DISCOVERY_RESOLUTION_ERROR;
 
 /** Configuration {@link LocalizableException} implementation */
 public class ServiceResolutionException extends LocalizableException {
@@ -63,6 +64,6 @@ public class ServiceResolutionException extends LocalizableException {
   @NonNull
   public static Supplier<ServiceResolutionException> createServiceResolutionError(
       final Object... args) {
-    return createError(ErrorPropertyType.SERVICE_RESOLUTION_ERROR, args);
+    return createError(SERVICE_DISCOVERY_RESOLUTION_ERROR, args);
   }
 }
