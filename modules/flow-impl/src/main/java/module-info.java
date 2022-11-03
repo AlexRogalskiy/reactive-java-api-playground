@@ -14,7 +14,7 @@ module reactive.java.api.flow.impl {
   requires reactive.java.api.commons;
   requires lombok;
   requires java.desktop;
-  requires static org.slf4j;
+  requires org.slf4j;
 
   provides EventConsumerFactory with
       FlowEventConsumerFactoryImpl;
