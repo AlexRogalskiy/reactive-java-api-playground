@@ -1,6 +1,6 @@
 package com.tviplabs.api.playground.reactor.producer;
 
-import com.tviplabs.api.playground.commons.configuration.ProducerConfig;
+import com.tviplabs.api.playground.commons.models.ProducerConfig;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

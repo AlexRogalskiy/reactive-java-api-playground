@@ -1,6 +1,6 @@
 package com.tviplabs.api.playground.flow.consumer;
 
-import com.tviplabs.api.playground.commons.configuration.ConsumerConfig;
+import com.tviplabs.api.playground.commons.models.ConsumerConfig;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumerFactory;
 import lombok.extern.slf4j.Slf4j;

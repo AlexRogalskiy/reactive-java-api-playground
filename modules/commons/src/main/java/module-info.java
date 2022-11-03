@@ -4,9 +4,9 @@
  * @author Alexander Rogalskiy
  */
 module reactive.java.api.commons {
-  exports com.tviplabs.api.playground.commons.exception;
+  exports com.tviplabs.api.playground.commons.exceptions;
   exports com.tviplabs.api.playground.commons.interfaces;
-  exports com.tviplabs.api.playground.commons.configuration;
+  exports com.tviplabs.api.playground.commons.models;
 
   requires reactive.java.api.annotations;
   requires reactive.java.api.extensions;

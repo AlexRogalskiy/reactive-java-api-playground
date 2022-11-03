@@ -18,13 +18,13 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.tviplabs.api.playground.commons.factory;
+package com.tviplabs.api.playground.commons.factories;
 
 import com.tviplabs.api.playground.commons.enumerations.ConfigPropertyType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static com.tviplabs.api.playground.commons.exception.ConfigurationException.createMessagesBasenameError;
+import static com.tviplabs.api.playground.commons.exceptions.ConfigurationException.createMessagesBasenameError;
 import static com.tviplabs.api.playground.commons.utils.ConfigurationUtils.getProperty;
 import static com.tviplabs.api.playground.commons.utils.ServiceUtils.getPropertyValueAsString;
 

@@ -1,6 +1,6 @@
 package com.tviplabs.api.playground.reactor.consumer;
 
-import com.tviplabs.api.playground.commons.configuration.ConsumerConfig;
+import com.tviplabs.api.playground.commons.models.ConsumerConfig;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

@@ -21,14 +21,14 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package com.tviplabs.api.playground.commons.factory;
+package com.tviplabs.api.playground.commons.factories;
 
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import com.tviplabs.api.playground.commons.helper.MessageFormatHolder;
+import com.tviplabs.api.playground.commons.helpers.MessageFormatHolder;
 
 /** Message factory that provides localized messages by resource bundles */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

@@ -30,8 +30,8 @@ import java.util.regex.Pattern;
 
 import com.tviplabs.api.playground.commons.enumerations.ConfigPropertyType;
 import com.tviplabs.api.playground.commons.enumerations.PlatformVariables;
-import com.tviplabs.api.playground.commons.exception.ConfigurationException;
-import com.tviplabs.api.playground.commons.exception.PropertyNotFoundException;
+import com.tviplabs.api.playground.commons.exceptions.ConfigurationException;
+import com.tviplabs.api.playground.commons.exceptions.PropertyNotFoundException;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;

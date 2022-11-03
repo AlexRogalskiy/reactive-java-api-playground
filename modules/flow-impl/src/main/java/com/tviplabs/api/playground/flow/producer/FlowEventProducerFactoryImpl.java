@@ -1,6 +1,6 @@
 package com.tviplabs.api.playground.flow.producer;
 
-import com.tviplabs.api.playground.commons.configuration.ProducerConfig;
+import com.tviplabs.api.playground.commons.models.ProducerConfig;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducerFactory;
 import lombok.extern.slf4j.Slf4j;

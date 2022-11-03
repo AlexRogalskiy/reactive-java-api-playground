@@ -7,7 +7,7 @@ import java.util.ServiceLoader;
 import java.util.function.Predicate;
 import java.util.stream.StreamSupport;
 
-import static com.tviplabs.api.playground.commons.exception.ServiceResolutionException.createServiceResolutionError;
+import static com.tviplabs.api.playground.commons.exceptions.ServiceResolutionException.createServiceResolutionError;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.equalsAnyIgnoreCase;
 

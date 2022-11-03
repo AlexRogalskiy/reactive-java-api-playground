@@ -28,7 +28,7 @@ import lombok.ToString;
 import java.util.Arrays;
 import java.util.function.Function;
 
-import static com.tviplabs.api.playground.commons.factory.ConfigurationConstants.PROPERTY_DELIMITER;
+import static com.tviplabs.api.playground.commons.factories.ConfigurationConstants.PROPERTY_DELIMITER;
 import static com.tviplabs.api.playground.commons.utils.ConfigurationUtils.getProperty;
 
 /** Supported namespace prefixes enumeration. */

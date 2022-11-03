@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package com.tviplabs.api.playground.commons.factory;
+package com.tviplabs.api.playground.commons.factories;
 
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.getDefault;

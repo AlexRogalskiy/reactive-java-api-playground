@@ -18,52 +18,51 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.tviplabs.api.playground.commons.exception;
+package com.tviplabs.api.playground.commons.exceptions;
 
 import com.tviplabs.api.playground.commons.interfaces.PropertyTemplate;
 import lombok.NonNull;
 
 import java.util.function.Supplier;
 
-import static com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType.SERVICE_DISCOVERY_RESOLUTION_ERROR;
+import static com.tviplabs.api.playground.commons.enumerations.ErrorPropertyType.CONFIGURATION_MESSAGES_BASENAME_ERROR;
 
 /** Configuration {@link LocalizableException} implementation */
-public class ServiceResolutionException extends LocalizableException {
+public class ConfigurationException extends LocalizableException {
   /** Default explicit serialVersionUID for interoperability */
   private static final long serialVersionUID = -2297995868660672241L;
 
   /**
-   * {@link ServiceResolutionException} constructor with initial input message
+   * {@link ConfigurationException} constructor with initial input message
    *
    * @param template initial input {@link PropertyTemplate} message
    * @param args initial input message {@link Object} collection of message arguments
    */
-  public ServiceResolutionException(final PropertyTemplate template, final Object... args) {
+  public ConfigurationException(final PropertyTemplate template, final Object... args) {
     super(template, args);
   }
 
   /**
-   * Returns {@link ServiceResolutionException} by input parameters
+   * Returns {@link ConfigurationException} by input parameters
    *
    * @param template initial input {@link PropertyTemplate} message
    * @param args initial input message {@link Object} collection of message arguments
-   * @return {@link ServiceResolutionException}
+   * @return {@link ConfigurationException}
    */
   @NonNull
-  public static Supplier<ServiceResolutionException> createError(
+  public static Supplier<ConfigurationException> createError(
       final PropertyTemplate template, final Object... args) {
-    return () -> new ServiceResolutionException(template, args);
+    return () -> new ConfigurationException(template, args);
   }
 
   /**
-   * Returns {@link ServiceResolutionException} by input parameters
+   * Returns messages basename {@link ConfigurationException} by input parameters
    *
    * @param args initial input message arguments {@link Object}
-   * @return port {@link ServiceResolutionException}
+   * @return port {@link ConfigurationException}
    */
   @NonNull
-  public static Supplier<ServiceResolutionException> createServiceResolutionError(
-      final Object... args) {
-    return createError(SERVICE_DISCOVERY_RESOLUTION_ERROR, args);
+  public static Supplier<ConfigurationException> createMessagesBasenameError(final Object... args) {
+    return createError(CONFIGURATION_MESSAGES_BASENAME_ERROR, args);
   }
 }

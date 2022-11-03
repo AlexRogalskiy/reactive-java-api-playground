@@ -1,4 +1,4 @@
-package com.tviplabs.api.playground.commons.configuration;
+package com.tviplabs.api.playground.commons.models;
 
 import lombok.experimental.SuperBuilder;
 
