@@ -11,7 +11,7 @@
 	</parent>
 
 	<name>com.tviplabs.api.playground.reactor</name>
-	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/reactor</url>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api-playground/blob/master/modules/reactor</url>
 	<description>Reactive Java API interfaces implementation intended for use with reactor project</description>
 	<inceptionYear>2022</inceptionYear>
 	<artifactId>reactive-java-api-reactor-impl</artifactId>

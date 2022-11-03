@@ -11,7 +11,7 @@
 	</parent>
 
 	<name>com.tviplabs.api.playground.extensions</name>
-	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/extensions</url>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api-playground/blob/master/modules/extensions</url>
 	<description>Reactive Java API extensions</description>
 	<inceptionYear>2022</inceptionYear>
 	<artifactId>reactive-java-api-extensions</artifactId>

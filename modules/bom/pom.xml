@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<name>com.tviplabs.api.playground</name>
-	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/bom</url>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api-playground/blob/master/modules/bom</url>
 	<description>Reactive Java API BOM (Bill of Materials)</description>
 	<inceptionYear>2022</inceptionYear>
 

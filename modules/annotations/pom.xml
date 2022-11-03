@@ -11,7 +11,7 @@
 	</parent>
 
 	<name>com.tviplabs.api.playground.annotations</name>
-	<url>https://github.com/AlexRogalskiy/reactive-java-api/blob/master/modules/annotations</url>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api-playground/blob/master/modules/annotations</url>
 	<description>Reactive Java API annotations</description>
 	<inceptionYear>2022</inceptionYear>
 	<artifactId>reactive-java-api-annotations</artifactId>

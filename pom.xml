@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<name>com.tviplabs.api.playground</name>
-	<url>https://github.com/AlexRogalskiy/reactive-java-api</url>
+	<url>https://github.com/AlexRogalskiy/reactive-java-api-playground</url>
 	<description>Reactive Java API sample</description>
 	<inceptionYear>2022</inceptionYear>
 
@@ -37,9 +37,7 @@
 		<lombok.version>1.18.22</lombok.version>
 		<google-error-prone.version>2.10.0</google-error-prone.version>
 		<jackson.version>2.13.0</jackson.version>
-		<aspectj.version>1.9.8.RC3</aspectj.version>
 		<junit-jupiter.version>5.8.2</junit-jupiter.version>
-		<assertj.version>3.21.0</assertj.version>
 		<cucumber.version>7.1.0</cucumber.version>
 		<logback.version>1.3.0-alpha14</logback.version>
 		<logback-contrib.version>0.1.5</logback-contrib.version>
@@ -47,12 +45,9 @@
 
 		<!-- plugins -->
 		<maven-os-plugin.version>1.7.0</maven-os-plugin.version>
-		<maven-cucumber-reporting.version>5.6.2</maven-cucumber-reporting.version>
 		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
 		<maven-spotless-plugin.version>2.17.4</maven-spotless-plugin.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-		<maven-allure-plugin.version>2.10.0</maven-allure-plugin.version>
 		<maven-help-plugin.version>3.2.0</maven-help-plugin.version>
 		<maven-dependency-check.version>6.5.0</maven-dependency-check.version>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -62,7 +57,7 @@
 	</properties>
 
 	<issueManagement>
-		<url>https://github.com/AlexRogalskiy/reactive-java-api/issues</url>
+		<url>https://github.com/AlexRogalskiy/reactive-java-api-playground/issues</url>
 		<system>GitHub Issues</system>
 	</issueManagement>
 
@@ -70,7 +65,7 @@
 		<site>
 			<id>GitHub</id>
 			<name>GitHub</name>
-			<url>scm:git:git@github.com/AlexRogalskiy/reactive-java-api.git</url>
+			<url>scm:git:git@github.com/AlexRogalskiy/reactive-java-api-playground.git</url>
 		</site>
 	</distributionManagement>
 
@@ -78,7 +73,7 @@
 		<license>
 			<name>MIT</name>
 			<url>
-				https://github.com/AlexRogalskiy/reactive-java-api/blob/master/LICENSE.txt
+				https://github.com/AlexRogalskiy/reactive-java-api-playground/blob/master/LICENSE.txt
 			</url>
 			<distribution>repo</distribution>
 			<comments>MIT license</comments>
@@ -94,158 +89,10 @@
 		<module>modules/reactor-impl</module>
 		<module>modules/bom</module>
 		<module>modules/samples</module>
+		<module>modules/it</module>
 	</modules>
 
 	<profiles>
-		<!-- Integration tests profile -->
-		<profile>
-			<id>it</id>
-			<properties>
-				<surefire.commands>
-					--enable-preview
-				</surefire.commands>
-				<surefire.file>
-					-Dfile.encoding=${project.build.sourceEncoding}
-				</surefire.file>
-				<surefire.memory>
-					-Xmx1024m
-					-XX:ReservedCodeCacheSize=1G
-					-Dsun.zip.disableMemoryMapping=true
-				</surefire.memory>
-				<surefire.network>
-					-Djava.net.preferIPv4Stack=true
-					-Djdk.net.URLClassPath.disableClassPathURLCheck=true
-				</surefire.network>
-				<surefire.timezone>
-					-Duser.timezone=Europe/Moscow
-				</surefire.timezone>
-				<surefire.agent>
-					-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-				</surefire.agent>
-			</properties>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-plugin</artifactId>
-							<version>${maven-surefire-plugin.version}</version>
-							<configuration>
-								<reuseForks>false</reuseForks>
-								<forkCount>1</forkCount>
-								<useSystemClassLoader>false</useSystemClassLoader>
-								<testFailureIgnore>false</testFailureIgnore>
-								<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
-								<argLine>
-									${surefire.agent}
-									${surefire.memory}
-									${surefire.file}
-									${surefire.network}
-									${surefire.timezone}
-									${surefire.commands}
-								</argLine>
-								<classpathDependencyExcludes>
-									<classpathDependencyExcludes>org.projectlombok:lombok</classpathDependencyExcludes>
-								</classpathDependencyExcludes>
-								<properties>
-									<property>
-										<name>listener</name>
-										<value>org.junit.platform.launcher.listeners.SummaryGeneratingListener</value>
-									</property>
-								</properties>
-								<systemProperties>
-									<property>
-										<name>allure.results.directory</name>
-										<value>${project.build.directory}/allure-results</value>
-									</property>
-									<property>
-										<name>allure.reports.directory</name>
-										<value>${project.build.directory}/allure-reports</value>
-									</property>
-								</systemProperties>
-							</configuration>
-							<dependencies>
-								<dependency>
-									<groupId>org.aspectj</groupId>
-									<artifactId>aspectjweaver</artifactId>
-									<version>${aspectj.version}</version>
-								</dependency>
-								<dependency>
-									<groupId>org.apache.maven.surefire</groupId>
-									<artifactId>maven-surefire-common</artifactId>
-									<version>${maven-surefire-plugin.version}</version>
-								</dependency>
-							</dependencies>
-						</plugin>
-
-						<plugin>
-							<groupId>io.qameta.allure</groupId>
-							<artifactId>allure-maven</artifactId>
-							<version>${maven-allure-plugin.version}</version>
-							<configuration>
-								<outputDirectory>${project.build.directory}</outputDirectory>
-								<reportingOutputDirectory>${project.build.directory}</reportingOutputDirectory>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-
-				<!-- Use in lifecycle -->
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>io.qameta.allure</groupId>
-						<artifactId>allure-maven</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<!-- Reporting profile -->
-		<profile>
-			<id>reporting</id>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>net.masterthought</groupId>
-							<artifactId>maven-cucumber-reporting</artifactId>
-							<version>${maven-cucumber-reporting.version}</version>
-							<executions>
-								<execution>
-									<id>execution</id>
-									<phase>verify</phase>
-									<goals>
-										<goal>generate</goal>
-									</goals>
-									<configuration>
-										<projectName>${project.name}</projectName>
-										<!-- output directory for the generated report -->
-										<outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
-										<!-- optional, defaults to outputDirectory if not specified -->
-										<inputDirectory>${project.build.directory}/cucumber</inputDirectory>
-										<jsonFiles>
-											<!-- supports wildcard or name pattern -->
-											<param>**/*.json</param>
-										</jsonFiles>
-										<!-- optional, defaults to outputDirectory if not specified -->
-										<classificationDirectory>${project.build.directory}/classifications</classificationDirectory>
-										<!--shows additional column in report - 'Device'-->
-										<!--                            <parallelTesting>true</parallelTesting>-->
-										<!-- optional, set true to fail build on test failures -->
-										<checkBuildResult>false</checkBuildResult>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-
 		<!-- Security check profile -->
 		<profile>
 			<id>security-check</id>
@@ -428,13 +275,6 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-			<!--			<dependency>-->
-			<!--				<groupId>com.tviplabs.api.playground</groupId>-->
-			<!--				<artifactId>reactive-java-api-bom</artifactId>-->
-			<!--				<version>${project.version}</version>-->
-			<!--				<scope>import</scope>-->
-			<!--				<type>pom</type>-->
-			<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
