@@ -6,7 +6,7 @@ import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumerFactor
 import com.tviplabs.api.playground.interfaces.discovery.ServiceProvider;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducerFactory;
-import lombok.Value;
+import com.tviplabs.api.playground.samples.models.StringDataEvent;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Properties;
@@ -20,14 +20,14 @@ import java.util.Properties;
 public class ApplicationRunner {
 
   public static void main(final String... args) {
-    final EventProducer<IntEvent> reactorEventProducer =
+    final EventProducer<StringDataEvent> reactorEventProducer =
         createProducer("ReactorEventProducerFactoryImpl", new Properties());
-    final EventConsumer<IntEvent> reactorEventConsumer =
+    final EventConsumer<StringDataEvent> reactorEventConsumer =
         createConsumer("ReactorEventConsumerFactoryImpl", new Properties());
 
-    final EventProducer<IntEvent> flowEventProducer =
+    final EventProducer<StringDataEvent> flowEventProducer =
         createProducer("FlowEventProducerFactoryImpl", new Properties());
-    final EventConsumer<IntEvent> flowEventConsumer =
+    final EventConsumer<StringDataEvent> flowEventConsumer =
         createConsumer("FlowEventConsumerFactoryImpl", new Properties());
   }
 
@@ -59,10 +59,5 @@ public class ApplicationRunner {
           ">>> ERROR: cannot instantiate event consumer service, message: {}", e.getMessage());
       throw e;
     }
-  }
-
-  @Value
-  private static class IntEvent implements Event {
-    Integer data;
   }
 }
