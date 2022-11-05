@@ -1,6 +1,7 @@
 package com.tviplabs.api.playground.flow.consumer;
 
 import com.tviplabs.api.playground.commons.models.ConsumerConfig;
+import com.tviplabs.api.playground.interfaces.common.Event;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.slf4j.MarkerFactory;
  * @param <E> type of event to consume.
  */
 @Slf4j
-public class FlowEventConsumerImpl<E> implements EventConsumer<E> {
+public class FlowEventConsumerImpl<E extends Event> implements EventConsumer<E> {
 
   /** Default logging configuration {@link Marker} instance */
   private static final Marker DEFAULT_LOGGING_MARKER =

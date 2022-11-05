@@ -8,4 +8,5 @@ module reactive.java.api.samples {
   requires reactive.java.api.annotations;
   requires lombok;
   requires org.slf4j;
+  requires java.desktop;
 }

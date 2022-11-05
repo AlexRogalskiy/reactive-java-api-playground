@@ -1,6 +1,7 @@
 package com.tviplabs.api.playground.reactor.producer;
 
 import com.tviplabs.api.playground.commons.models.ProducerConfig;
+import com.tviplabs.api.playground.interfaces.common.Event;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducerFactory;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.Properties;
  */
 @Slf4j
 @RequiredArgsConstructor
-public class ReactorEventProducerFactoryImpl<E> implements EventProducerFactory<E> {
+public class ReactorEventProducerFactoryImpl<E extends Event> implements EventProducerFactory<E> {
 
   /** Default logging configuration {@link Marker} instance */
   private static final Marker DEFAULT_LOGGING_MARKER =

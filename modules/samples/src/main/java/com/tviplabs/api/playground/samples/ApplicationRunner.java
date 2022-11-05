@@ -1,10 +1,12 @@
 package com.tviplabs.api.playground.samples;
 
+import com.tviplabs.api.playground.interfaces.common.Event;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumerFactory;
 import com.tviplabs.api.playground.interfaces.discovery.ServiceProvider;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducerFactory;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Properties;
@@ -18,19 +20,19 @@ import java.util.Properties;
 public class ApplicationRunner {
 
   public static void main(final String... args) {
-    final EventProducer<Integer> reactorEventProducer =
+    final EventProducer<IntEvent> reactorEventProducer =
         createProducer("ReactorEventProducerFactoryImpl", new Properties());
-    final EventConsumer<Integer> reactorEventConsumer =
+    final EventConsumer<IntEvent> reactorEventConsumer =
         createConsumer("ReactorEventConsumerFactoryImpl", new Properties());
 
-    final EventProducer<Integer> flowEventProducer =
+    final EventProducer<IntEvent> flowEventProducer =
         createProducer("FlowEventProducerFactoryImpl", new Properties());
-    final EventConsumer<Integer> flowEventConsumer =
+    final EventConsumer<IntEvent> flowEventConsumer =
         createConsumer("FlowEventConsumerFactoryImpl", new Properties());
   }
 
   @SuppressWarnings("unchecked")
-  private static <E> EventProducer<E> createProducer(
+  private static <E extends Event> EventProducer<E> createProducer(
       final String serviceName, final Properties properties) {
     try {
       final EventProducerFactory<E> producerFactory =
@@ -45,7 +47,7 @@ public class ApplicationRunner {
   }
 
   @SuppressWarnings("unchecked")
-  private static <E> EventConsumer<E> createConsumer(
+  private static <E extends Event> EventConsumer<E> createConsumer(
       final String serviceName, final Properties properties) {
     try {
       final EventConsumerFactory<E> consumerFactory =
@@ -57,5 +59,10 @@ public class ApplicationRunner {
           ">>> ERROR: cannot instantiate event consumer service, message: {}", e.getMessage());
       throw e;
     }
+  }
+
+  @Value
+  private static class IntEvent implements Event {
+    Integer data;
   }
 }

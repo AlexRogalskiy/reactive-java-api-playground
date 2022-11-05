@@ -1,6 +1,7 @@
 package com.tviplabs.api.playground.reactor.consumer;
 
 import com.tviplabs.api.playground.commons.models.ConsumerConfig;
+import com.tviplabs.api.playground.interfaces.common.Event;
 import com.tviplabs.api.playground.interfaces.consumer.event.EventConsumer;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import org.slf4j.MarkerFactory;
  */
 @Slf4j
 @RequiredArgsConstructor
-public class ReactorEventConsumerImpl<E> implements EventConsumer<E> {
+public class ReactorEventConsumerImpl<E extends Event> implements EventConsumer<E> {
 
   /** Default logging configuration {@link Marker} instance */
   private static final Marker DEFAULT_LOGGING_MARKER =

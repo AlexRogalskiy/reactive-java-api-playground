@@ -1,6 +1,7 @@
 package com.tviplabs.api.playground.flow.producer;
 
 import com.tviplabs.api.playground.commons.models.ProducerConfig;
+import com.tviplabs.api.playground.interfaces.common.Event;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducer;
 import com.tviplabs.api.playground.interfaces.producer.event.EventProducerFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ import java.util.Properties;
  * @param <E> type of event to produce.
  */
 @Slf4j
-public class FlowEventProducerFactoryImpl<E> implements EventProducerFactory<E> {
+public class FlowEventProducerFactoryImpl<E extends Event> implements EventProducerFactory<E> {
 
   /** Default logging configuration {@link Marker} instance */
   private static final Marker DEFAULT_LOGGING_MARKER =

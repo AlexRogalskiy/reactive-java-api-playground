@@ -1,5 +1,6 @@
 package com.tviplabs.api.playground.interfaces.producer.event;
 
+import com.tviplabs.api.playground.interfaces.common.Event;
 import com.tviplabs.api.playground.interfaces.producer.generic.Producer;
 
 /**
@@ -9,7 +10,7 @@ import com.tviplabs.api.playground.interfaces.producer.generic.Producer;
  * @param <E> type of event to produce.
  */
 @FunctionalInterface
-public interface EventProducer<E> extends Producer<E> {
+public interface EventProducer<E extends Event> extends Producer<E> {
   /**
    * Publishes particular {@link E} event type.
    *
